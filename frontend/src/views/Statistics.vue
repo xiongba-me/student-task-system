@@ -387,42 +387,110 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
+/* 在 Statistics.vue 的 <style scoped> 中添加或替换以下样式 */
+
 .statistics-container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 24px;
+  background: #f8f9fc;
+  min-height: 100vh;
 }
 
+/* 页面头部 */
 .page-header {
-  margin-bottom: 30px;
+  margin-bottom: 36px;
   text-align: center;
+  padding: 48px 24px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 20px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
+}
+
+.page-header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+  animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 .page-header h2 {
-  font-size: 28px;
-  color: #333;
-  margin-bottom: 10px;
+  position: relative;
+  font-size: 36px;
+  color: white;
+  margin: 0 0 12px 0;
+  font-weight: 700;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .page-header p {
-  font-size: 14px;
-  color: #999;
+  position: relative;
+  font-size: 16px;
+  margin: 0;
+  opacity: 0.95;
 }
 
+/* 图表卡片 */
 .chart-card {
-  margin-bottom: 30px;
+  margin-bottom: 32px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  background: white;
+  transition: all 0.3s;
+}
+
+.chart-card:hover {
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
+  transform: translateY(-4px);
+}
+
+.chart-card :deep(.el-card__header) {
+  background: linear-gradient(135deg, #f8f9fc 0%, #e9ecef 100%);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 24px 28px;
 }
 
 .card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
 }
 
 .card-header span {
-  font-size: 16px;
-  font-weight: 500;
+  font-size: 18px;
+  font-weight: 700;
   color: #333;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.card-header span::before {
+  content: '';
+  width: 4px;
+  height: 24px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 2px;
+}
+
+.chart-card :deep(.el-card__body) {
+  padding: 32px 28px;
 }
 
 .chart-container {
@@ -430,54 +498,251 @@ onUnmounted(() => {
   min-height: 300px;
 }
 
+/* 日期选择器样式 */
+.el-date-editor {
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  transition: all 0.3s;
+}
+
+.el-date-editor:hover {
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+  border-color: #667eea;
+}
+
+.el-date-editor.is-active {
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.25);
+  border-color: #667eea;
+}
+
+/* 统计卡片 */
 .stats-cards {
-  margin-top: 30px;
+  margin-top: 32px;
+}
+
+.stat-card {
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.stat-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
 }
 
 .stat-card :deep(.el-card__body) {
-  padding: 20px;
+  padding: 28px 24px;
   text-align: center;
+  background: linear-gradient(135deg, #f8f9fc 0%, #ffffff 100%);
 }
 
 .stat-icon {
-  width: 56px;
-  height: 56px;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 12px;
+  margin: 0 auto 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-icon::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.5s;
+}
+
+.stat-card:hover .stat-icon::before {
+  transform: translate(-50%, -50%) scale(1.5);
 }
 
 .stat-value {
-  font-size: 28px;
-  font-weight: bold;
-  color: #333;
-  margin: 8px 0;
+  font-size: 32px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 12px 0;
+  line-height: 1.2;
 }
 
 .stat-label {
   font-size: 14px;
   color: #666;
   margin: 0;
+  font-weight: 600;
+}
+
+/* Echarts 图表样式优化 */
+.chart-container canvas {
+  border-radius: 12px;
+}
+
+/* 加载动画优化 */
+.el-loading-mask {
+  background-color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(8px);
+  border-radius: 20px;
 }
 
 /* 响应式设计 */
-@media (max-width: 768px) {
-  .statistics-container {
-    padding: 10px;
+@media (max-width: 1024px) {
+  .page-header {
+    padding: 36px 20px;
   }
 
   .page-header h2 {
-    font-size: 22px;
+    font-size: 28px;
+  }
+
+  .chart-card :deep(.el-card__header) {
+    padding: 20px 24px;
+  }
+
+  .chart-card :deep(.el-card__body) {
+    padding: 24px 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .statistics-container {
+    padding: 16px;
+  }
+
+  .page-header {
+    padding: 28px 16px;
+    margin-bottom: 24px;
+  }
+
+  .page-header h2 {
+    font-size: 24px;
+  }
+
+  .page-header p {
+    font-size: 14px;
+  }
+
+  .chart-card {
+    margin-bottom: 20px;
+  }
+
+  .chart-card :deep(.el-card__header) {
+    padding: 16px 20px;
+  }
+
+  .card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .card-header span {
+    font-size: 16px;
+  }
+
+  .chart-card :deep(.el-card__body) {
+    padding: 20px 16px;
   }
 
   .chart-container {
     height: 300px !important;
+    min-height: auto;
+  }
+
+  .stat-icon {
+    width: 52px;
+    height: 52px;
   }
 
   .stat-value {
-    font-size: 22px;
+    font-size: 26px;
   }
+
+  .stat-label {
+    font-size: 13px;
+  }
+}
+
+/* 美化滚动条 */
+.statistics-container ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.statistics-container ::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.statistics-container ::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 4px;
+}
+
+.statistics-container ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #5568d3 0%, #653993 100%);
+}
+
+/* 动画效果 */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.chart-card {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.chart-card:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.stat-card {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.stat-card:nth-child(1) { animation-delay: 0.1s; }
+.stat-card:nth-child(2) { animation-delay: 0.2s; }
+.stat-card:nth-child(3) { animation-delay: 0.3s; }
+.stat-card:nth-child(4) { animation-delay: 0.4s; }
+
+/* 优化 Element Plus 组件样式 */
+.el-row {
+  margin: 0 !important;
+}
+
+.el-col {
+  padding: 0 10px !important;
+}
+
+/* 优化进度条样式 */
+.el-progress {
+  line-height: 1;
+}
+
+.el-progress__text {
+  font-size: 14px !important;
+  font-weight: 600 !important;
 }
 </style>

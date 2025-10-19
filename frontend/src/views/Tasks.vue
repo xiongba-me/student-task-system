@@ -970,7 +970,7 @@ onBeforeUnmount(() => {
   .task-status-area {
     width: 160px;
   }
-  
+
   .countdown-time,
   .duration-time {
     font-size: 22px;
@@ -981,31 +981,31 @@ onBeforeUnmount(() => {
   .tasks-container {
     padding: 12px;
   }
-  
+
   .header-banner {
     padding: 20px;
   }
-  
+
   .header-banner h1 {
     font-size: 22px;
   }
-  
+
   .statistics-cards {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   .week-days {
     gap: 8px;
   }
-  
+
   .day-card {
     padding: 12px 8px;
   }
-  
+
   .task-card {
     flex-direction: column;
   }
-  
+
   .task-category-sidebar {
     width: 100%;
     height: 40px;
@@ -1014,7 +1014,7 @@ onBeforeUnmount(() => {
     letter-spacing: normal;
     padding: 8px;
   }
-  
+
   .task-status-area {
     width: 100%;
     flex-direction: row;
@@ -1022,7 +1022,7 @@ onBeforeUnmount(() => {
     border-left: none;
     border-top: 1px solid #f0f0f0;
   }
-  
+
   .countdown-display,
   .pending-display,
   .completed-display {
