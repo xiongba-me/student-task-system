@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.student.task.mapper.TaskMapper">
+    
+    <!-- 获取用户任务统计 -->
+    <select id="getTaskStatistics" resultType="map">
+        SELECT 
+            COUNT(*) as totalTasks,
+            SUM(CASE WHEN status = 'completed' THEN 1 ELSE 0 END) as completedTasks,
+            SUM(CASE WHEN status = 'in_progress' THEN 1 ELSE 0 END) as inProgressTasks,
+            SUM(CASE WHEN status = 'pending' THEN 1 ELSE 0 END) as pendingTasks,
+            SUM(CASE WHEN status = 'cancelled' THEN 1 ELSE 0 END) as cancelledTasks,
+            COALESCE(SUM(duration), 0) as totalDuration
+        FROM task
+        WHERE user_id = #{userId} 
+        <if test="startDate != null">
+            AND task_date &gt;= #{startDate}
+        </if>
+        <if test="endDate != null">
+            AND task_date &lt;= #{endDate}
+        </if>
+        AND deleted = 0
+    </select>
+    
+    <!-- 获取分类统计 -->
+    <select id="getCategoryStatistics" resultType="map">
+        SELECT 
+            category,
+            COUNT(*) as taskCount,
+            SUM(CASE WHEN status = 'completed' THEN 1 ELSE 0 END) as completedCount,
+            COALESCE(SUM(duration), 0) as totalDuration
+        FROM task
+        WHERE user_id = #{userId}
+        <if test="startDate != null">
+            AND task_date &gt;= #{startDate}
+        </if>
+        <if test="endDate != null">
+            AND task_date &lt;= #{endDate}
+        </if>
+        AND deleted = 0
+        AND category IS NOT NULL
+        GROUP BY category
+        ORDER BY taskCount DESC
+    </select>
+    
+</mapper>
