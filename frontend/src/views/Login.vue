@@ -16,8 +16,8 @@
             <el-icon :size="48"><Reading /></el-icon>
           </div>
         </div>
-        <h1>学生打卡系统</h1>
-        <p>Student Check-In System</p>
+        <h1>学生任务系统</h1>
+        <p>Student Task System</p>
       </div>
 
       <!-- 切换标签 -->
@@ -203,7 +203,7 @@
 
     <!-- 页脚 -->
     <div class="login-footer">
-      <p>© 2025 学生打卡系统. All rights reserved.</p>
+      <p>© 2025 学生任务系统. All rights reserved.</p>
     </div>
   </div>
 </template>

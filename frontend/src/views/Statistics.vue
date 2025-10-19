@@ -37,7 +37,7 @@
       <div ref="barChartRef" class="chart-container" style="height: 500px;"></div>
     </el-card>
 
-    <!-- 打卡统计卡片 -->
+
     <el-row :gutter="20" class="stats-cards">
       <el-col :xs="12" :sm="6" v-for="stat in statsData" :key="stat.label">
         <el-card class="stat-card" shadow="hover">

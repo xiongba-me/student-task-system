@@ -2,8 +2,8 @@
   <div class="tasks-container">
     <!-- 顶部横幅 -->
     <div class="header-banner">
-      <h1>学习计划与打卡统计助手</h1>
-      <p>你已坚持打卡{{ totalDays }}天,已累计完成{{ totalTasks }}个学习计划!</p>
+      <h1>学习计划统计助手</h1>
+      <p>你已坚持{{ totalDays }}天,已累计完成{{ totalTasks }}个学习计划!</p>
     </div>
 
     <!-- 统计卡片 -->
